@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barang Masuk - Nama Perusahaan System</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { brand: '#4f46e5' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 flex flex-col md:flex-row h-screen overflow-hidden text-slate-800 antialiased font-sans">
+
+    <!-- Sidebar (Desktop only) -->
+    <aside class="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex flex-col transition-all shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-slate-800">
+            <i class="ph-fill ph-package text-indigo-500 text-2xl mr-3"></i>
+            <span class="text-white font-bold text-lg tracking-wide">Nama Perusahaan</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+            <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Menu Utama</p>
+            
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-squares-four text-xl"></i> Dashboard
+            </a>
+            <a href="master-data.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-database text-xl"></i> Master Data
+            </a>
+            <a href="barang-masuk.html" class="flex items-center gap-3 px-3 py-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg font-medium">
+                <i class="ph ph-arrow-circle-down text-xl"></i> Barang Masuk
+            </a>
+            <a href="barang-keluar.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-up text-xl"></i> Barang Keluar
+            </a>
+            <a href="invoice.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-receipt text-xl"></i> Invoice
+            </a>
+            <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-wallet text-xl"></i> Payment
+            </a>
+            <a href="laporan.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-chart-line-up text-xl"></i> Laporan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800">
+            <div class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-slate-800/50">
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-9 h-9 rounded-full">
+                    <div class="truncate">
+                        <p class="text-sm font-semibold text-white truncate">Tepe Zhavarez</p>
+                        <p class="text-xs text-slate-400">Super Admin</p>
+                    </div>
+                </div>
+                <a href="login.html" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shadow-sm" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Bottom Bar (Mobile only) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-slate-900 border-t border-slate-800 flex justify-around items-center h-16 z-50 px-2">
+        <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-squares-four text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Home</span>
+        </a>
+        <a href="master-data.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-database text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Master</span>
+        </a>
+        <a href="barang-masuk.html" class="flex flex-col items-center gap-1 text-indigo-400">
+            <i class="ph-fill ph-arrow-circle-down text-2xl"></i>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Masuk</span>
+        </a>
+        <a href="barang-keluar.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-up text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Keluar</span>
+        </a>
+        <a href="laporan.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-chart-line-up text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Laporan</span>
+        </a>
+    </nav>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 md:px-8 shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-3">
+                <a href="dashboard.html" class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition">
+                    <i class="ph ph-arrow-left text-xl font-bold"></i>
+                </a>
+                <h1 class="text-lg md:text-xl font-bold text-slate-800 truncate border-l border-slate-200 pl-4">Barang Masuk</h1>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <div class="hidden sm:block px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold rounded-full border border-amber-200 uppercase tracking-widest">Draft</div>
+                <button class="relative p-2 text-slate-400 hover:bg-slate-100 rounded-full transition">
+                    <i class="ph ph-bell text-xl"></i>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+                <a href="login.html" class="p-2 text-slate-400 hover:text-rose-500 rounded-full hover:bg-rose-50 transition" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+                <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-8 h-8 rounded-full md:hidden border border-slate-200">
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
+            <div class="max-w-7xl mx-auto">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <div class="md:col-span-2 space-y-6">
+                        
+                        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                            <h2 class="text-base font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <i class="ph-fill ph-file-text text-indigo-600 text-xl"></i> Informasi Dokumen PO
+                            </h2>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-600 mb-2 pl-1">Nomor PO</label>
+                                    <input type="text" value="PO-2026-005" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-400 outline-none cursor-not-allowed">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-600 mb-2 pl-1">Tanggal Diterima</label>
+                                    <input type="date" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-600 mb-2 pl-1">Supplier</label>
+                                    <select class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                                        <option>-- Pilih Supplier --</option>
+                                        <option selected>PT Teknologi Maju</option>
+                                        <option>CV Jaya Abadi</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-600 mb-2 pl-1">Gudang Tujuan</label>
+                                    <select class="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                                        <option>GDG-01 (Gudang Utama Jakarta)</option>
+                                        <option>GDG-02 (Gudang Transit)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-3xl shadow-sm overflow-hidden p-8">
+                            <h2 class="text-base font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <i class="ph-fill ph-list-plus text-indigo-600 text-xl"></i> Daftar Produk Diterima
+                            </h2>
+                            <div class="overflow-x-auto mb-6">
+                                <table class="w-full text-left">
+                                    <thead class="border-b border-slate-100">
+                                        <tr>
+                                            <th class="pb-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Produk</th>
+                                            <th class="pb-4 text-xs font-semibold text-slate-500 uppercase tracking-wider w-24">Qty</th>
+                                            <th class="pb-4 text-xs font-semibold text-slate-500 uppercase tracking-wider w-40">Harga Beli</th>
+                                            <th class="pb-4 text-xs font-semibold text-slate-500 uppercase tracking-wider w-40">Subtotal</th>
+                                            <th class="pb-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-50">
+                                        <tr>
+                                            <td class="py-5 pr-4">
+                                                <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                                                    <option>Pilih Produk...</option>
+                                                    <option selected>Kabel UTP Cat 6</option>
+                                                </select>
+                                                <div class="text-[10px] uppercase font-bold text-slate-400 mt-2 ml-1">Merk: Belden Indoor</div>
+                                            </td>
+                                            <td class="py-5 pr-4">
+                                                <input type="number" value="10" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 text-center">
+                                            </td>
+                                            <td class="py-5 pr-4">
+                                                <div class="relative">
+                                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-400">RP</span>
+                                                    <input type="text" value="1.200.000" class="w-full bg-white border border-slate-300 rounded-xl pl-8 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
+                                                </div>
+                                            </td>
+                                            <td class="py-5 pr-4">
+                                                <div class="text-sm font-bold text-slate-800">Rp 12.000.000</div>
+                                            </td>
+                                            <td class="py-5 text-right">
+                                                <button class="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition"><i class="ph ph-trash text-xl"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button onclick="addRow()" class="w-full py-4 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all font-semibold text-sm flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-plus"></i> Tambah Baris Baru
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-indigo-900 text-white p-8 rounded-3xl shadow-xl shadow-indigo-200 flex flex-col justify-between h-fit">
+                            <h3 class="text-indigo-300 text-xs font-bold uppercase tracking-widest mb-6 border-b border-indigo-800 pb-4">Ringkasan Nilai PO</h3>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex justify-between items-center bg-indigo-800/40 p-3 rounded-xl border border-indigo-800/50">
+                                    <span class="text-indigo-200 text-sm">Total Produk</span>
+                                    <span class="font-bold">1 Item</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-indigo-800/40 p-3 rounded-xl border border-indigo-800/50">
+                                    <span class="text-indigo-200 text-sm">Total Kuantitas</span>
+                                    <span class="font-bold">10 Pcs</span>
+                                </div>
+                            </div>
+                            <div class="mb-8">
+                                <p class="text-indigo-400 text-[10px] uppercase font-bold tracking-widest mb-1">Grand Total</p>
+                                <p class="text-3xl font-extrabold tracking-tight">Rp 12,000,000</p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <button class="w-full bg-white text-indigo-900 hover:bg-indigo-50 font-bold py-4 rounded-2xl transition active:scale-95 shadow-lg shadow-indigo-950/20">Konfirmasi Final</button>
+                                <button class="w-full bg-indigo-800/50 text-indigo-200 hover:bg-indigo-800 font-semibold py-3 rounded-xl transition text-sm">Simpan Draft</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                            <h2 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <i class="ph-fill ph-camera text-indigo-600 text-lg"></i> Bukti Terima
+                            </h2>
+                            <div class="border-2 border-dashed border-slate-200 rounded-2xl p-6 text-center hover:border-indigo-400 transition-colors group cursor-pointer">
+                                <div class="w-12 h-12 bg-slate-50 flex items-center justify-center rounded-xl mx-auto mb-3 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-colors">
+                                    <i class="ph ph-upload-simple text-2xl text-slate-400 group-hover:text-indigo-500"></i>
+                                </div>
+                                <p class="text-[12px] font-bold text-slate-600">Klik atau seret file</p>
+                                <p class="text-[10px] text-slate-400 mt-1">Sertakan foto surat jalan supplier (JPG/PDF)</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                            <h2 class="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <i class="ph-fill ph-chat-circle-dots text-indigo-600 text-lg"></i> Catatan
+                            </h2>
+                            <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs outline-none focus:ring-2 focus:ring-indigo-500 transition-all" placeholder="Tambahkan keterangan tambahan..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function addRow() {
+            // Function logic for demo purposes
+        }
+    </script>
+</body>
+</html>
