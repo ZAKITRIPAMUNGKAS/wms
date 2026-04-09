@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - Nama Perusahaan System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }, colors: { brand: '#4f46e5', wa: '#25D366' } } } }
+        
+        // Simple script to toggle modal
+        function toggleModal() {
+            const modal = document.getElementById('invoiceModal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+    </script>
+</head>
+<body class="bg-slate-50 flex flex-col md:flex-row h-screen overflow-hidden text-slate-800 antialiased font-sans">
+
+    <!-- Sidebar (Desktop only) -->
+    <aside class="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex flex-col transition-all shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-slate-800">
+            <i class="ph-fill ph-package text-indigo-500 text-2xl mr-3"></i>
+            <span class="text-white font-bold text-lg tracking-wide">Nama Perusahaan</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+            <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Menu Utama</p>
+            
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-squares-four text-xl"></i> Dashboard
+            </a>
+            <a href="master-data.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-database text-xl"></i> Master Data
+            </a>
+            <a href="barang-masuk.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-down text-xl"></i> Barang Masuk
+            </a>
+            <a href="barang-keluar.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-up text-xl"></i> Barang Keluar
+            </a>
+            <a href="invoice.html" class="flex items-center gap-3 px-3 py-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg font-medium">
+                <i class="ph ph-receipt text-xl"></i> Invoice
+            </a>
+            <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-wallet text-xl"></i> Payment
+            </a>
+            <a href="laporan.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-chart-line-up text-xl"></i> Laporan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800">
+            <div class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-slate-800/50">
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-9 h-9 rounded-full">
+                    <div class="truncate">
+                        <p class="text-sm font-semibold text-white truncate">Tepe Zhavarez</p>
+                        <p class="text-xs text-slate-400">Super Admin</p>
+                    </div>
+                </div>
+                <a href="index.html" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shadow-sm" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Bottom Bar (Mobile only) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-slate-900 border-t border-slate-800 flex justify-around items-center h-16 z-50 px-2">
+        <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-squares-four text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Home</span>
+        </a>
+        <a href="master-data.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-database text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Master</span>
+        </a>
+        <a href="barang-masuk.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-down text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Masuk</span>
+        </a>
+        <a href="barang-keluar.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-up text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Keluar</span>
+        </a>
+        <a href="invoice.html" class="flex flex-col items-center gap-1 text-indigo-400">
+            <i class="ph-fill ph-receipt text-2xl"></i>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Invoice</span>
+        </a>
+    </nav>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 md:px-8 shadow-sm shrink-0 z-10">
+            <div class="flex items-center gap-3">
+                <i class="ph-fill ph-package text-indigo-600 text-2xl md:hidden"></i>
+                <h1 class="text-lg md:text-xl font-bold text-slate-800 truncate">Invoice</h1>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition flex items-center gap-2 shadow-sm shadow-indigo-200">
+                    <i class="ph-bold ph-plus"></i> <span class="hidden sm:inline">Buat Manual</span>
+                </button>
+                <a href="index.html" class="p-2 text-slate-400 hover:text-rose-500 rounded-full hover:bg-rose-50 transition" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+                <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-8 h-8 rounded-full md:hidden border border-slate-200">
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-6 flex flex-wrap gap-4 items-center justify-between">
+                    <div class="flex flex-wrap gap-4 items-center flex-1">
+                        <div class="relative w-full max-w-xs">
+                            <i class="ph ph-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-lg"></i>
+                            <input type="text" placeholder="Cari No. Invoice / Customer..." class="w-full bg-slate-50 border border-slate-200 text-slate-700 rounded-xl pl-10 pr-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                        </div>
+                        <div class="relative">
+                            <input type="date" class="bg-slate-50 border border-slate-200 text-slate-600 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <select class="bg-slate-50 border border-slate-200 text-slate-600 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">Semua Status</option>
+                            <option value="lunas">Lunas</option>
+                            <option value="partial">Bayar Sebagian</option>
+                            <option value="belum">Belum Dibayar</option>
+                        </select>
+                    </div>
+                    <button class="text-slate-500 hover:text-indigo-600 font-medium text-sm flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-indigo-50 transition">
+                        <i class="ph ph-faders"></i> Reset Filter
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-slate-50/80 border-b border-slate-100">
+                                <tr>
+                                    <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">No. Invoice</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Customer</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tanggal & Tempo</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Tagihan</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800">INV-2026-089</div>
+                                        <div class="text-xs text-slate-400 mt-0.5">Ref: SJ-2026-001</div>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-slate-700">PT Maju Jaya Abadi</td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-slate-700">12 Apr 2026</div>
+                                        <div class="text-xs text-rose-500 font-medium mt-0.5">Tempo: 19 Apr 2026</div>
+                                    </td>
+                                    <td class="px-6 py-4 font-bold text-slate-800">Rp 70.000.000</td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-rose-50 text-rose-700 text-xs font-bold border border-rose-200">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div> Unpaid
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button onclick="toggleModal()" class="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 px-3 py-1.5 rounded-lg font-medium text-sm transition transition-all active:scale-95">Detail</button>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800">INV-2026-088</div>
+                                        <div class="text-xs text-slate-400 mt-0.5">Ref: SJ-2026-002</div>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-slate-700">Toko Sentosa Makmur</td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-slate-700">10 Apr 2026</div>
+                                        <div class="text-xs text-slate-400 mt-0.5">Cash</div>
+                                    </td>
+                                    <td class="px-6 py-4 font-bold text-slate-800">Rp 12.500.000</td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div> Lunas
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 px-3 py-1.5 rounded-lg font-medium text-sm transition transition-all active:scale-95">Detail</button>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50/50 transition">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800">INV-2026-087</div>
+                                        <div class="text-xs text-slate-400 mt-0.5">Ref: SJ-2026-003</div>
+                                    </td>
+                                    <td class="px-6 py-4 font-medium text-slate-700">CV Teknologi Nusantara</td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-slate-700">08 Apr 2026</div>
+                                        <div class="text-xs text-amber-600 font-medium mt-0.5">Tempo: 22 Apr 2026</div>
+                                    </td>
+                                    <td class="px-6 py-4 font-bold text-slate-800">Rp 45.000.000</td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div> Partial
+                                        </span>
+                                        <div class="text-[10px] text-slate-500 mt-1 font-medium">Sisa: Rp 20.Jt</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 px-3 py-1.5 rounded-lg font-medium text-sm transition transition-all active:scale-95">Detail</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="invoiceModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4 transition-all">
+            
+            <div class="bg-slate-100 w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+                
+                <div class="bg-white px-6 py-4 border-b border-slate-200 flex justify-between items-center z-10 shadow-sm">
+                    <h2 class="font-bold text-slate-800 flex items-center gap-2 text-lg"><i class="ph-fill ph-file-text text-indigo-600 text-xl"></i> Preview Invoice</h2>
+                    <div class="flex items-center gap-3">
+                        <button class="bg-[#25D366] hover:bg-[#1da851] text-white px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-md shadow-emerald-200/50">
+                            <i class="ph-bold ph-whatsapp-logo text-lg"></i> Kirim WA
+                        </button>
+                        <button class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-sm">
+                            <i class="ph-bold ph-download-simple text-lg"></i> PDF
+                        </button>
+                        <button onclick="toggleModal()" class="text-slate-400 hover:text-rose-500 p-2 rounded-lg transition ml-2 hover:bg-rose-50">
+                            <i class="ph-bold ph-x text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-6 md:p-10 flex justify-center bg-slate-100">
+                    
+                    <div class="bg-white w-full max-w-[210mm] min-h-[297mm] p-10 md:p-14 shadow-2xl border border-slate-200 mx-auto relative rounded-sm">
+                        
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-12 opacity-[0.03] text-[8rem] font-black uppercase text-rose-500 pointer-events-none tracking-widest leading-none text-center">
+                            UNPAID
+                        </div>
+
+                        <div class="flex justify-between items-start border-b-2 border-slate-100 pb-8 mb-10">
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="p-2 bg-indigo-600 rounded-lg">
+                                        <i class="ph-fill ph-package text-white text-2xl"></i>
+                                    </div>
+                                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Nama Perusahaan</h1>
+                                </div>
+                                <p class="text-sm text-slate-500 leading-relaxed">Kawasan Industri Candi Blok A No.1</p>
+                                <p class="text-sm text-slate-500 leading-relaxed">Semarang, Jawa Tengah 50146</p>
+                                <p class="text-sm text-slate-500 leading-relaxed">Telp: (024) 1234567 | NPWP: 01.234.567.8-901.000</p>
+                            </div>
+                            <div class="text-right">
+                                <h2 class="text-4xl font-black text-indigo-600 tracking-tighter uppercase mb-2">INVOICE</h2>
+                                <p class="text-sm font-bold text-slate-800"># INV-2026-089</p>
+                                <div class="mt-4 space-y-1">
+                                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Tanggal Penerbitan</p>
+                                    <p class="text-sm font-semibold text-slate-700">12 April 2026</p>
+                                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-2">Jatuh Tempo</p>
+                                    <p class="text-sm font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded-md inline-block">19 April 2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-12 mb-12">
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1 w-fit">Tagihan Kepada:</p>
+                                <h3 class="text-lg font-bold text-slate-900">PT Maju Jaya Abadi</h3>
+                                <p class="text-sm text-slate-500 mt-2 leading-relaxed">Jl. Sudirman No. 45, Komplek Perkantoran Blok B, Jakarta Selatan, 12190</p>
+                                <div class="mt-4 flex items-center gap-2">
+                                    <i class="ph ph-user-circle text-slate-400 text-lg"></i>
+                                    <p class="text-sm text-slate-600 font-semibold italic">Attn: Bpk. Budi Santoso</p>
+                                </div>
+                            </div>
+                            <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100/50">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 border-b border-slate-100 pb-1 w-fit">Status Pembayaran:</p>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-2xl font-black text-rose-600 tracking-tight">BELUM LUNAS</span>
+                                    <p class="text-xs text-slate-500 font-medium">Harap melakukan pembayaran sebelum tanggal jatuh tempo untuk menghindari denda keterlambatan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="w-full text-left border-collapse mb-10">
+                            <thead>
+                                <tr class="bg-indigo-600 text-white border-none">
+                                    <th class="py-3 px-4 text-xs font-bold uppercase tracking-widest rounded-l-xl">Deskripsi Barang</th>
+                                    <th class="py-3 px-2 text-xs font-bold uppercase tracking-widest text-center w-24">Qty</th>
+                                    <th class="py-3 px-2 text-xs font-bold uppercase tracking-widest text-right w-40">Harga (Rp)</th>
+                                    <th class="py-3 px-4 text-xs font-bold uppercase tracking-widest text-right w-48 rounded-r-xl">Total (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-700 divide-y divide-slate-100">
+                                <tr class="group">
+                                    <td class="py-5 px-4 group-hover:bg-slate-50/50 transition">
+                                        <div class="font-bold text-slate-900">Kabel UTP Cat 6</div>
+                                        <div class="text-xs text-slate-400 mt-1 italic">Merk: Belden Indoor - Premium Quality</div>
+                                    </td>
+                                    <td class="py-5 px-2 text-center font-bold text-slate-600">10 Roll</td>
+                                    <td class="py-5 px-2 text-right">1.500.000</td>
+                                    <td class="py-5 px-4 text-right font-black text-slate-900">15.000.000</td>
+                                </tr>
+                                <tr class="group">
+                                    <td class="py-5 px-4 group-hover:bg-slate-50/50 transition">
+                                        <div class="font-bold text-slate-900">Router MikroTik hAP ac2</div>
+                                        <div class="text-xs text-slate-400 mt-1 italic">Ref SJ: SJ-2026-001 | S/N: 7122-AAB-90</div>
+                                    </td>
+                                    <td class="py-5 px-2 text-center font-bold text-slate-600">50 Pcs</td>
+                                    <td class="py-5 px-2 text-right">1.100.000</td>
+                                    <td class="py-5 px-4 text-right font-black text-slate-900">55.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="flex justify-end mb-12">
+                            <div class="w-full max-w-sm space-y-3">
+                                <div class="flex justify-between items-center px-4 py-2 bg-slate-50 rounded-xl">
+                                    <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Subtotal</span>
+                                    <span class="font-bold text-slate-700">Rp 70.000.000</span>
+                                </div>
+                                <div class="flex justify-between items-center px-4 py-2 border border-slate-100 rounded-xl">
+                                    <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">PPN (11%)</span>
+                                    <span class="text-sm text-slate-400 font-medium italic">Termasuk</span>
+                                </div>
+                                <div class="flex justify-between items-center px-6 py-4 bg-slate-900 text-white rounded-2xl shadow-xl shadow-slate-200">
+                                    <span class="text-base font-black uppercase tracking-widest">TOTAL</span>
+                                    <span class="text-2xl font-black">Rp 70.000.000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-12 items-end pt-12 border-t-2 border-slate-100">
+                            <div>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-100 pb-1 w-fit">Instruksi Pembayaran:</p>
+                                <div class="bg-indigo-50/30 p-5 rounded-2xl border border-indigo-100">
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="bg-white w-10 h-6 rounded flex items-center justify-center border border-slate-200 text-[10px] font-bold text-indigo-900">BCA</div>
+                                        <p class="text-sm font-black text-indigo-900 tracking-tight">123 456 7890</p>
+                                    </div>
+                                    <p class="text-xs font-bold text-slate-600 uppercase mb-3">A/N PT Nama Perusahaan</p>
+                                    <p class="text-[11px] text-slate-400 leading-relaxed italic">Catatan: Harap sertakan <span class="text-indigo-600 font-bold whitespace-nowrap">#INV-2026-089</span> pada keterangan berita transfer Anda.</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-slate-500 mb-20 italic">Hormat Kami,</p>
+                                <div class="relative inline-block px-10">
+                                    <div class="absolute -top-12 left-1/2 -translate-x-1/2 opacity-20 transform -rotate-6">
+                                        <i class="ph ph-signature text-6xl text-indigo-600"></i>
+                                    </div>
+                                    <p class="text-base font-black text-slate-900 border-b-2 border-slate-900 pb-1 leading-none">Finance Department</p>
+                                </div>
+                                <p class="text-[10px] font-bold text-slate-400 tracking-widest mt-2 uppercase">Grup Nama Perusahaan</p>
+                            </div>
+                        </div>
+
+                        <footer class="mt-16 text-center text-[10px] text-slate-300 font-medium border-t border-slate-50 pt-4 uppercase tracking-[0.2em]">
+                            Surat ini diterbitkan secara otomatis dan sah tanpa tanda tangan basah.
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
