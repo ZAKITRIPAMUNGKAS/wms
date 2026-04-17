@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Data - Nama Perusahaan System</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/state.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: { brand: '#4f46e5' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 flex flex-col md:flex-row h-screen overflow-hidden text-slate-800 antialiased font-sans">
+
+    <!-- Sidebar (Desktop only) -->
+    <aside class="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex flex-col transition-all shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-slate-800">
+            <i class="ph-fill ph-package text-indigo-500 text-2xl mr-3"></i>
+            <span class="text-white font-bold text-lg tracking-wide">Nama Perusahaan</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+            <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Menu Utama</p>
+            
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-squares-four text-xl"></i> Dashboard
+            </a>
+            <a href="master-data.html" class="flex items-center gap-3 px-3 py-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg font-medium">
+                <i class="ph ph-database text-xl"></i> Master Data
+            </a>
+            <a href="barang-masuk.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-down text-xl"></i> Barang Masuk
+            </a>
+            <a href="barang-keluar.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-up text-xl"></i> Barang Keluar
+            </a>
+            <a href="invoice.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-receipt text-xl"></i> Invoice
+            </a>
+            <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-wallet text-xl"></i> Payment
+            </a>
+            <a href="laporan.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-chart-line-up text-xl"></i> Laporan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800">
+            <div class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-slate-800/50">
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-9 h-9 rounded-full">
+                    <div class="truncate">
+                        <p class="text-sm font-semibold text-white truncate">Tepe Zhavarez</p>
+                        <p class="text-xs text-slate-400">Super Admin</p>
+                    </div>
+                </div>
+                <a href="index.html" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shadow-sm" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Bottom Bar (Mobile only) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-slate-900 border-t border-slate-800 flex justify-around items-center h-16 z-50 px-2">
+        <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-squares-four text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Home</span>
+        </a>
+        <a href="master-data.html" class="flex flex-col items-center gap-1 text-indigo-400">
+            <i class="ph-fill ph-database text-2xl"></i>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Master</span>
+        </a>
+        <a href="barang-masuk.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-down text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Masuk</span>
+        </a>
+        <a href="barang-keluar.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-up text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Keluar</span>
+        </a>
+        <a href="laporan.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-chart-line-up text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Laporan</span>
+        </a>
+    </nav>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 md:px-8 shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-3">
+                <i class="ph-fill ph-package text-indigo-600 text-2xl md:hidden"></i>
+                <h1 class="text-lg md:text-xl font-bold text-slate-800 truncate">Master Data</h1>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button class="relative p-2 text-slate-400 hover:bg-slate-100 rounded-full transition">
+                    <i class="ph ph-bell text-xl"></i>
+                    <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+                <a href="index.html" class="p-2 text-slate-400 hover:text-rose-500 rounded-full hover:bg-rose-50 transition" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+                <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-8 h-8 rounded-full md:hidden border border-slate-200">
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 md:mb-8">
+                    <div class="overflow-x-auto pb-2 -mb-2">
+                        <div class="flex items-center gap-1 p-1 bg-slate-200/50 rounded-xl w-max" id="tab-container">
+                            <button onclick="switchTab('Produk')" id="tab-Produk" class="px-4 py-2 text-sm font-semibold text-indigo-600 bg-white shadow-sm rounded-lg transition-all whitespace-nowrap">Produk</button>
+                            <button onclick="switchTab('Customer')" id="tab-Customer" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md transition-all whitespace-nowrap">Customer</button>
+                            <button onclick="switchTab('Supplier')" id="tab-Supplier" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md transition-all whitespace-nowrap">Supplier</button>
+                            <button onclick="switchTab('Gudang')" id="tab-Gudang" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md transition-all whitespace-nowrap">Gudang</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                        <div class="relative group flex-1 sm:flex-initial">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors">
+                                <i class="ph ph-magnifying-glass font-bold"></i>
+                            </span>
+                            <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari data..." 
+                                class="w-full sm:w-64 pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all">
+                        </div>
+                        <button onclick="openAddModal()" id="add-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 transition active:scale-95">
+                            <i class="ph-bold ph-plus"></i> Tambah Produk
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50/80 border-b border-slate-100" id="table-head">
+                                <!-- Headers will be injected here -->
+                            </thead>
+                            <tbody class="divide-y divide-slate-100" id="table-body">
+                                <!-- Rows will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 bg-slate-50/50 border-t border-slate-100 flex justify-between items-center">
+                        <p class="text-xs text-slate-500 font-medium" id="pagination-info">Menampilkan 0 data</p>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1 text-xs border border-slate-200 bg-white rounded-md hover:bg-slate-50 disabled:opacity-50" disabled>&larr; Prev</button>
+                            <button class="px-3 py-1 text-xs border border-slate-200 bg-white rounded-md hover:bg-slate-50">Next &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="modal-content" class="bg-white w-full max-w-xl rounded-3xl shadow-2xl scale-95 transition-all duration-300 overflow-hidden">
+            <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-slate-800" id="modal-title">Tambah Data</h3>
+                <button onclick="toggleModal()" class="p-2 text-slate-400 hover:bg-slate-100 rounded-full transition"><i class="ph ph-x font-bold"></i></button>
+            </div>
+            <form id="master-form" onsubmit="handleSave(event)">
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-6" id="form-fields">
+                    <!-- Form fields injected here -->
+                </div>
+                <div class="px-8 py-6 bg-slate-50 border-t border-slate-100 flex justify-end gap-3">
+                    <button type="button" onclick="toggleModal()" class="px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 transition">Batal</button>
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-2.5 rounded-xl transition shadow-lg shadow-indigo-500/20 active:scale-95">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'Produk';
+        let searchQuery = '';
+
+        let MasterData = WMSState.getData();
+
+        const TableConfig = {
+            Produk: { headers: ['Kode', 'Nama & Tipe', 'Satuan', 'Harga'], fields: ['id', 'name', 'unit', 'price'] },
+            Customer: { headers: ['ID', 'Nama Customer', 'Kontak', 'Telepon'], fields: ['id', 'name', 'contact', 'phone'] },
+            Supplier: { headers: ['ID', 'Nama Supplier', 'Kategori', 'Kota'], fields: ['id', 'name', 'category', 'city'] },
+            Gudang: { headers: ['ID', 'Nama Gudang', 'Tipe', 'Penanggung Jawab'], fields: ['id', 'name', 'type', 'pic'] }
+        };
+
+        function switchTab(tab) {
+            currentTab = tab;
+            searchQuery = '';
+            document.getElementById('search-input').value = '';
+            
+            // Update Tab UI
+            const tabs = ['Produk', 'Customer', 'Supplier', 'Gudang'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if(t === tab) {
+                    btn.className = "px-4 py-2 text-sm font-semibold text-indigo-600 bg-white shadow-sm rounded-lg transition-all";
+                } else {
+                    btn.className = "px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md transition-all";
+                }
+            });
+
+            // Update Add Button & Search Placeholder
+            document.getElementById('add-btn').innerHTML = `<i class="ph-bold ph-plus"></i> Tambah ${tab}`;
+            document.getElementById('search-input').placeholder = `Cari ${tab.toLowerCase()}...`;
+            
+            renderTable();
+        }
+
+        function renderTable() {
+            const head = document.getElementById('table-head');
+            const body = document.getElementById('table-body');
+            const currentData = WMSState.get(currentTab);
+            const data = currentData.filter(item => 
+                Object.values(item).some(val => String(val).toLowerCase().includes(searchQuery.toLowerCase()))
+            );
+
+            // Render Head
+            let headHtml = '<tr>';
+            config.headers.forEach(h => {
+                headHtml += `<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">${h}</th>`;
+            });
+            headHtml += `<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Aksi</th></tr>`;
+            head.innerHTML = headHtml;
+
+            // Render Body
+            let bodyHtml = '';
+            if(data.length === 0) {
+                bodyHtml = `<tr><td colspan="${config.headers.length + 1}" class="px-6 py-10 text-center text-slate-400">Tidak ada data ditemukan</td></tr>`;
+            } else {
+                data.forEach((row, index) => {
+                    bodyHtml += `<tr class="hover:bg-slate-50/50 transition-colors group">`;
+                    config.fields.forEach((field, i) => {
+                        let content = row[field];
+                        if(i === 0) { // Highlight ID/Code
+                            bodyHtml += `<td class="px-6 py-4"><span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md border border-indigo-100">${content}</span></td>`;
+                        } else if(currentTab === 'Produk' && field === 'price') {
+                            bodyHtml += `<td class="px-6 py-4 text-sm font-bold text-slate-800">Rp ${Number(content).toLocaleString('id-ID')}</td>`;
+                        } else if(currentTab === 'Produk' && field === 'name') {
+                            bodyHtml += `<td class="px-6 py-4"><div class="font-semibold text-slate-800">${row.name}</div><div class="text-xs text-slate-500">${row.brand} / ${row.type}</div></td>`;
+                        } else {
+                            bodyHtml += `<td class="px-6 py-4 text-sm font-medium text-slate-600">${content}</td>`;
+                        }
+                    });
+                    bodyHtml += `
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition"><i class="ph ph-note-pencil text-xl"></i></button>
+                                <button onclick="deleteData('${currentTab}', ${index})" class="p-2 text-rose-600 hover:bg-rose-50 rounded-lg transition"><i class="ph ph-trash text-xl"></i></button>
+                            </div>
+                        </td></tr>`;
+                });
+            }
+            body.innerHTML = bodyHtml;
+            document.getElementById('pagination-info').innerText = `Menampilkan ${data.length} dari ${WMSState.get(currentTab).length} ${currentTab.toLowerCase()}`;
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value;
+            renderTable();
+        }
+
+        function deleteData(tab, index) {
+            if(confirm(`Yakin ingin menghapus ${tab} ini?`)) {
+                WMSState.remove(tab, index);
+                renderTable();
+            }
+        }
+
+        function openAddModal() {
+            const title = document.getElementById('modal-title');
+            const fields = document.getElementById('form-fields');
+            title.innerText = `Tambah ${currentTab} Baru`;
+            
+            let formHtml = '';
+            const data = WMSState.get(currentTab);
+            if(currentTab === 'Produk') {
+                formHtml = `
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Kode</label><input type="text" name="id" value="PRD-${String(data.length + 1).padStart(3, '0')}" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-indigo-600"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Nama Produk</label><input type="text" name="name" required class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Merk</label><input type="text" name="brand" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Varian/Tipe</label><input type="text" name="type" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Satuan</label><select name="unit" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"><option>Roll</option><option>Pcs</option><option>Box</option></select></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Harga</label><input type="number" name="price" placeholder="0" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>`;
+            } else if(currentTab === 'Customer') {
+                formHtml = `
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">ID</label><input type="text" name="id" value="CST-${String(data.length + 1).padStart(3, '0')}" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-indigo-600"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Nama Customer</label><input type="text" name="name" required class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Kontak Person</label><input type="text" name="contact" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Telepon</label><input type="text" name="phone" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-2"><label class="block text-sm font-semibold text-slate-600 mb-2">Alamat</label><textarea name="address" rows="2" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></textarea></div>`;
+            } else if(currentTab === 'Supplier') {
+                formHtml = `
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">ID</label><input type="text" name="id" value="SPL-${String(data.length + 1).padStart(3, '0')}" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-indigo-600"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Nama Supplier</label><input type="text" name="name" required class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Kategori</label><input type="text" name="category" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Kota</label><input type="text" name="city" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Telepon</label><input type="text" name="phone" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>`;
+            } else if(currentTab === 'Gudang') {
+                formHtml = `
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">ID</label><input type="text" name="id" value="GDN-${String(data.length + 1).padStart(3, '0')}" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-indigo-600"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Nama Gudang</label><input type="text" name="name" required class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Tipe</label><input type="text" name="type" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">PIC</label><input type="text" name="pic" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>
+                    <div class="col-span-1"><label class="block text-sm font-semibold text-slate-600 mb-2">Kapasitas</label><input type="text" name="capacity" class="w-full border border-slate-300 rounded-xl px-4 py-3 text-sm"></div>`;
+            }
+            fields.innerHTML = formHtml;
+            toggleModal();
+        }
+
+        function handleSave(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const newItem = {};
+            
+            // Get original ID (since it's disabled)
+            const idField = event.target.querySelector('[name="id"]');
+            newItem.id = idField.value;
+
+            for (let [key, value] of formData.entries()) {
+                newItem[key] = value;
+            }
+
+            WMSState.add(currentTab, newItem);
+            toggleModal();
+            renderTable();
+            event.target.reset();
+        }
+
+        function toggleModal() {
+            const backdrop = document.getElementById('modal-backdrop');
+            const content = document.getElementById('modal-content');
+            
+            if(backdrop.classList.contains('opacity-0')) {
+                backdrop.classList.replace('opacity-0', 'opacity-100');
+                backdrop.classList.replace('pointer-events-none', 'pointer-events-auto');
+                content.classList.replace('scale-95', 'scale-100');
+            } else {
+                backdrop.classList.replace('opacity-100', 'opacity-0');
+                backdrop.classList.replace('pointer-events-auto', 'pointer-events-none');
+                content.classList.replace('scale-100', 'scale-95');
+            }
+        }
+
+        // Initial Render
+        renderTable();
+    </script>
+</body>
+</html>

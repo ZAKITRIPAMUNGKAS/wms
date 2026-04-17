@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+<<<<<<< HEAD
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Supplier;
@@ -46,6 +47,26 @@ class DatabaseSeeder extends Seeder
             'code' => 'GDG-01',
             'name' => 'Gudang Utama Jakarta',
             'location' => 'Jakarta Timur'
+=======
+use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    use WithoutModelEvents;
+
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        // User::factory(10)->create();
+
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+>>>>>>> 5dcac91 (Refactor: Mobile-first responsive UI and performance optimization)
         ]);
     }
 }

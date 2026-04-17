@@ -5,7 +5,11 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+<<<<<<< HEAD
 /.fleet
+=======
+/.cursor/
+>>>>>>> 5dcac91 (Refactor: Mobile-first responsive UI and performance optimization)
 /.idea
 /.nova
 /.phpunit.cache

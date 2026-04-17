@@ -1,11 +1,45 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@layer components {
+  /* Responsive container */
+  .container-responsive {
+    @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+  }
+  
+  /* Card standar glassmorphism style */
+  .card-base {
+    @apply bg-white border border-slate-200 shadow-sm rounded-2xl md:rounded-3xl p-4 md:p-6 transition-all;
+  }
+  
+  /* Button touch-friendly */
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-6 py-3 md:py-3.5 rounded-xl min-h-[44px] transition-all active:scale-95 disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-slate-200 text-slate-600 font-bold px-6 py-3 md:py-3.5 rounded-xl min-h-[44px] transition-all active:scale-95;
+  }
+  
+  /* Input touch-friendly */
+  .input-base {
+    @apply w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-4 py-3 md:py-3.5 min-h-[44px] outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all;
+  }
+  
+  /* Page heading */
+  .heading-page {
+    @apply text-xl md:text-2xl lg:text-3xl font-black text-slate-800 tracking-tight;
+  }
+  
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

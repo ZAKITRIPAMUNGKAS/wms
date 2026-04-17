@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Nama Perusahaan System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }, colors: { brand: '#4f46e5' } } } }
+        function togglePaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            modal.classList.toggle('hidden'); modal.classList.toggle('flex');
+        }
+    </script>
+</head>
+<body class="bg-slate-50 flex flex-col md:flex-row h-screen overflow-hidden text-slate-800 antialiased font-sans">
+
+    <!-- Sidebar (Desktop only) -->
+    <aside class="hidden md:flex w-64 bg-slate-900 border-r border-slate-800 flex flex-col transition-all shrink-0">
+        <div class="h-16 flex items-center px-6 border-b border-slate-800">
+            <i class="ph-fill ph-package text-indigo-500 text-2xl mr-3"></i>
+            <span class="text-white font-bold text-lg tracking-wide">Nama Perusahaan</span>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+            <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Menu Utama</p>
+            
+            <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-squares-four text-xl"></i> Dashboard
+            </a>
+            <a href="master-data.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-database text-xl"></i> Master Data
+            </a>
+            <a href="barang-masuk.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-down text-xl"></i> Barang Masuk
+            </a>
+            <a href="barang-keluar.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-arrow-circle-up text-xl"></i> Barang Keluar
+            </a>
+            <a href="invoice.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-receipt text-xl"></i> Invoice
+            </a>
+            <a href="payment.html" class="flex items-center gap-3 px-3 py-2.5 bg-indigo-500/10 text-indigo-400 rounded-lg font-medium">
+                <i class="ph ph-wallet text-xl"></i> Payment
+            </a>
+            <a href="laporan.html" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg font-medium transition-colors">
+                <i class="ph ph-chart-line-up text-xl"></i> Laporan
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-800">
+            <div class="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-slate-800/50">
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-9 h-9 rounded-full">
+                    <div class="truncate">
+                        <p class="text-sm font-semibold text-white truncate">Tepe Zhavarez</p>
+                        <p class="text-xs text-slate-400">Super Admin</p>
+                    </div>
+                </div>
+                <a href="index.html" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shadow-sm" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Bottom Bar (Mobile only) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-slate-900 border-t border-slate-800 flex justify-around items-center h-16 z-50 px-2">
+        <a href="dashboard.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-squares-four text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Home</span>
+        </a>
+        <a href="master-data.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-database text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Master</span>
+        </a>
+        <a href="barang-masuk.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-down text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Masuk</span>
+        </a>
+        <a href="barang-keluar.html" class="flex flex-col items-center gap-1 text-slate-500">
+            <i class="ph ph-arrow-circle-up text-2xl"></i>
+            <span class="text-[10px] font-medium uppercase tracking-tight">Keluar</span>
+        </a>
+        <a href="payment.html" class="flex flex-col items-center gap-1 text-indigo-400">
+            <i class="ph-fill ph-wallet text-2xl"></i>
+            <span class="text-[10px] font-bold uppercase tracking-tight">Payment</span>
+        </a>
+    </nav>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <header class="h-16 bg-white border-b border-slate-200 flex justify-between items-center px-4 md:px-8 shadow-sm z-10 shrink-0">
+            <div class="flex items-center gap-3">
+                <i class="ph-fill ph-package text-indigo-600 text-2xl md:hidden"></i>
+                <h1 class="text-lg md:text-xl font-bold text-slate-800 truncate">Payment</h1>
+            </div>
+            <div class="flex items-center gap-2 md:gap-4">
+                <button onclick="togglePaymentModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition flex items-center gap-2 shadow-sm shadow-indigo-200">
+                    <i class="ph-bold ph-plus"></i> <span class="hidden sm:inline">Terima Pembayaran</span>
+                </button>
+                <a href="index.html" class="p-2 text-slate-400 hover:text-rose-500 rounded-full hover:bg-rose-50 transition" title="Logout">
+                    <i class="ph ph-sign-out text-xl"></i>
+                </a>
+                <img src="https://ui-avatars.com/api/?name=Tepe+Zhavarez&background=4f46e5&color=fff" class="w-8 h-8 rounded-full md:hidden border border-slate-200">
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
+            <div class="max-w-7xl mx-auto">
+                
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+                    <div class="overflow-x-auto pb-2 -mb-2 border-b lg:border-none border-slate-200">
+                        <div class="flex space-x-2 bg-white p-1 rounded-xl shadow-sm border border-slate-200 w-max">
+                            <button class="px-4 py-2 text-sm font-semibold bg-indigo-50 text-indigo-600 rounded-lg whitespace-nowrap">Semua Tagihan</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-lg whitespace-nowrap">Belum Lunas</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-lg whitespace-nowrap">Partial</button>
+                            <button class="px-4 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 rounded-lg whitespace-nowrap">Lunas</button>
+                        </div>
+                    </div>
+                    <div class="relative w-full lg:w-72">
+                        <i class="ph ph-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-lg"></i>
+                        <input type="text" placeholder="Cari Invoice..." class="w-full bg-white border border-slate-200 text-slate-700 rounded-xl pl-10 pr-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm transition-all">
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-slate-50/80 border-b border-slate-100">
+                            <tr>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase">No. Invoice & Cust</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase text-right">Total Invoice</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase text-right">Telah Dibayar</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase text-right">Sisa Tagihan</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase w-48">Progress</th>
+                                <th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50/50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="font-bold text-slate-800">INV-2026-087</div>
+                                    <div class="text-xs text-slate-500 mt-0.5">CV Teknologi Nusantara</div>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-slate-800 text-right">Rp 45.000.000</td>
+                                <td class="px-6 py-4 font-semibold text-emerald-600 text-right">Rp 25.000.000</td>
+                                <td class="px-6 py-4 font-bold text-rose-500 text-right">Rp 20.000.000</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-between text-xs mb-1">
+                                        <span class="font-bold text-indigo-600">55%</span>
+                                        <span class="text-slate-400">Partial</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-indigo-500 h-2 rounded-full transition-all duration-700" style="width: 55%"></div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-lg font-medium text-xs transition transition-all active:scale-95">Riwayat</button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="hover:bg-slate-50/50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="font-bold text-slate-800">INV-2026-089</div>
+                                    <div class="text-xs text-slate-500 mt-0.5">PT Maju Jaya Abadi</div>
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-slate-800 text-right">Rp 70.000.000</td>
+                                <td class="px-6 py-4 font-semibold text-emerald-600 text-right">Rp 0</td>
+                                <td class="px-6 py-4 font-bold text-rose-500 text-right">Rp 70.000.000</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-between text-xs mb-1">
+                                        <span class="font-bold text-rose-500">0%</span>
+                                        <span class="text-slate-400">Belum Bayar</span>
+                                    </div>
+                                    <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                                        <div class="bg-rose-500 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <button onclick="togglePaymentModal()" class="text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-lg font-medium text-xs transition transition-all active:scale-95">Bayar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="paymentModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm items-center justify-center p-4 transition-all">
+            <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+                <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                    <h2 class="font-bold text-slate-800 flex items-center gap-2"><i class="ph-fill ph-wallet text-indigo-600 text-xl"></i> Input Pembayaran</h2>
+                    <button onclick="togglePaymentModal()" class="text-slate-400 hover:text-rose-500 transition hover:bg-rose-50 p-1 rounded-lg"><i class="ph-bold ph-x text-xl"></i></button>
+                </div>
+                
+                <div class="p-6">
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-slate-600 mb-2 pl-1">Pilih Invoice</label>
+                        <select class="w-full bg-white border border-slate-300 text-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                            <option>INV-2026-089 - PT Maju Jaya Abadi (Sisa: Rp 70.000.000)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <div>
+                            <p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1">Total Invoice</p>
+                            <p class="font-bold text-slate-800 text-sm">Rp 70.000.000</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1">Sudah Dibayar</p>
+                            <p class="font-bold text-emerald-600 text-sm">Rp 0</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1">Sisa Tagihan</p>
+                            <p class="font-bold text-rose-500 text-sm">Rp 70.000.000</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-2 pl-1">Nominal Pembayaran</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2.5 text-slate-400 text-sm font-bold">Rp</span>
+                                <input type="text" placeholder="0" class="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm font-bold text-slate-900 outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-2 pl-1">Tanggal Bayar</label>
+                            <input type="date" class="w-full bg-white border border-slate-300 text-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-5 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-2 pl-1">Metode Pembayaran</label>
+                            <select class="w-full bg-white border border-slate-300 text-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                                <option>Transfer Bank (BCA)</option>
+                                <option>Cash / Tunai</option>
+                                <option>Giro / Cek</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-2 pl-1">Bukti Transfer (Opsional)</label>
+                            <input type="file" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 border border-slate-300 rounded-xl">
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="block text-sm font-medium text-slate-600 mb-2 pl-1">Catatan</label>
+                        <textarea rows="2" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all resize-none" placeholder="Catatan pembayaran..."></textarea>
+                    </div>
+                </div>
+
+                <div class="px-8 py-5 border-t border-slate-100 flex justify-end gap-3 bg-slate-50/50">
+                    <button onclick="togglePaymentModal()" class="px-5 py-2.5 text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition active:scale-95">Batal</button>
+                    <button class="px-5 py-2.5 text-sm font-bold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 active:scale-95">Konfirmasi Pembayaran</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
